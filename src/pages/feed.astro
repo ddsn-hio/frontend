@@ -24,11 +24,21 @@ import Posts from 'fulldev-ui/blocks/Posts.astro'
     // @ts-ignore
     postsContainer.innerHTML = '';
 
+    const dateOptions = {
+        timezone: 'America/New_York',
+        weekday: 'long',
+        month: 'long',
+        day: 'numeric',
+        hour12: true,
+        hour: '2-digit',
+        minute: '2-digit'
+    };
+
     // @ts-ignore
     posts.forEach(post => {
         const postElement = document.createElement('div');
         postElement.innerHTML = template
-            .replace('{time}', `from ${new Date(post.start).toLocaleDateString} to ${new Date(post.end).toLocaleDateString()}`)
+            .replace('{time}', `from ${new Date(post.start).toLocaleString("en-US")} to ${new Date(post.end).toLocaleDateString("en-US")}`)
             .replace('{name}', post.title)
             .replace('{content}', post.contents);
         // @ts-ignore
