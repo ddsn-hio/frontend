@@ -7,7 +7,7 @@ import Posts from 'fulldev-ui/blocks/Posts.astro'
 <Layout title="Feed">
     <Section align="center">
         <Column class="posts">
-            Test
+            Loading...
         </Column>
     </Section>
 
@@ -20,6 +20,9 @@ import Posts from 'fulldev-ui/blocks/Posts.astro'
     const posts = await fetch('/api/events').then(res => res.json());
 
     const postsContainer = document.querySelector('.posts');
+    // clear content
+    // @ts-ignore
+    postsContainer.innerHTML = '';
 
     // @ts-ignore
     posts.forEach(post => {
@@ -27,7 +30,7 @@ import Posts from 'fulldev-ui/blocks/Posts.astro'
         postElement.innerHTML = template
             .replace('{time}', post.start)
             .replace('{name}', post.title)
-            .replace('{content}', post.content);
+            .replace('{content}', post.contents);
         // @ts-ignore
         postsContainer.appendChild(postElement);
     });
