@@ -93,6 +93,14 @@ import Column from "fulldev-ui/components/Column.astro";
 
     publishButton.addEventListener('click', async (e) => {
         e.preventDefault();
+
+        const formData = Object.fromEntries(new FormData(eventForm));
+        // convert start and end to ISO string
+        // @ts-ignore
+        formData.start = new Date(formData.start).toISOString();
+        // @ts-ignore
+        formData.end = new Date(formData.end).toISOString();
+
         const response = await fetch('/api/events', {
             method: 'POST',
             headers: {
@@ -100,7 +108,7 @@ import Column from "fulldev-ui/components/Column.astro";
                 // @ts-ignore
                 'Authorization': `Bearer ${getToken().split('=')[1]}`,
             },
-            body: JSON.stringify(Object.fromEntries(new FormData(eventForm))),
+            body: JSON.stringify(formData),
         });
         if (response.ok) {
             alert('Event published!');
