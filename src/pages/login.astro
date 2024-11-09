@@ -44,7 +44,10 @@ import Column from 'fulldev-ui/components/Column.astro';
         e.preventDefault();
         const response = await fetch('/api/login', {
             method: 'POST',
-            body: new FormData(loginForm),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(Object.fromEntries(new FormData(loginForm))),
         });
         // check if resopnse is ok
         if (response.ok) {
