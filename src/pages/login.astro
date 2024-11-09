@@ -51,11 +51,11 @@ import Column from 'fulldev-ui/components/Column.astro';
         });
         // check if resopnse is ok
         if (response.ok) {
-            // redirect to dashboard
-            window.location.href = '/feed';
             const data = await response.json();
             // set cookie token to store user session
             document.cookie = `token=${data.token}`;
+            // redirect to dashboard
+            window.location.href = '/feed';
         } else {
             // show error message
             alert('Invalid email or password');

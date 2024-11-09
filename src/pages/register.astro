@@ -7,7 +7,7 @@ import Column from 'fulldev-ui/components/Column.astro';
 ---
 
 <Layout title="Register">
-    <form action="/api/register" method="POST">
+    <form action="/api/register" class="register" method="POST">
         <Section align='center'>
             <Column>
                 <Section align="center">
@@ -35,9 +35,64 @@ import Column from 'fulldev-ui/components/Column.astro';
                 placeholder="johndoe@example.com"
                 required
                 />
-                <Button color="brand">Register</Button>
+                <Button color="brand" class="register-button">Register</Button>
               </Section>
             </Column>
         </Section>
     </form>
 </Layout>
+
+<!-- <script>
+    const loginForm = document.querySelector('.login') as HTMLFormElement;
+    const loginButton = document.querySelector('.login-button') as HTMLButtonElement;
+
+    loginButton.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(Object.fromEntries(new FormData(loginForm))),
+        });
+        // check if resopnse is ok
+        if (response.ok) {
+            // redirect to dashboard
+            window.location.href = '/feed';
+            const data = await response.json();
+            // set cookie token to store user session
+            document.cookie = `token=${data.token}`;
+        } else {
+            // show error message
+            alert('Invalid email or password');
+        }
+    });
+</script> -->
+
+<script>
+    const registerForm = document.querySelector('.register') as HTMLFormElement;
+    const registerButton = document.querySelector('.register-button') as HTMLButtonElement;
+
+    registerButton.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const response = await fetch('/api/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(Object.fromEntries(new FormData(registerForm))),
+        });
+        // check if resopnse is ok
+        if (response.ok) {
+            const data = await response.json();
+            // set cookie token to store user session
+            document.cookie = `token=${data.token}`;
+            // redirect to dashboard
+            window.location.href = '/login';
+
+        } else {
+            // show error message
+            alert('Invalid email or password');
+        }
+    });
+</script>
