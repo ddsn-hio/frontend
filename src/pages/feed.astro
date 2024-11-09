@@ -14,10 +14,6 @@ import Posts from 'fulldev-ui/blocks/Posts.astro'
 </Layout>
 
 <script>
-    // @ts-ignore
-    if (!window.isAuthenticated()) {
-        window.location.href = '/login';
-    }
 
     const template = `<div class="card root column structure-column align-start frame-none radius-auto space-auto">        <span class="tagline root color-base">{time}</span>  <div class="spread root align-center">  <h4 class="heading root contrast level-4 color-base">{name}</h4>    </div>  <p class="text root color-base">{content}</p>       </div>`;
 
