@@ -28,7 +28,7 @@ import Posts from 'fulldev-ui/blocks/Posts.astro'
     posts.forEach(post => {
         const postElement = document.createElement('div');
         postElement.innerHTML = template
-            .replace('{time}', `from ${Date.parse(post.start).toLocaleString()} to ${Date.parse(post.end).toLocaleString()}`)
+            .replace('{time}', `from ${new Date(post.start).toLocaleDateString} to ${new Date(post.end).toLocaleDateString()}`)
             .replace('{name}', post.title)
             .replace('{content}', post.contents);
         // @ts-ignore
