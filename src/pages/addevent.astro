@@ -1,74 +1,73 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Input from 'fulldev-ui/components/Input.astro';
-import Button from 'fulldev-ui/components/Button.astro'
-import Section from 'fulldev-ui/components/Section.astro';
-import Column from 'fulldev-ui/components/Column.astro';
+import Layout from "../layouts/Layout.astro";
+import Input from "fulldev-ui/components/Input.astro";
+import Button from "fulldev-ui/components/Button.astro";
+import Section from "fulldev-ui/components/Section.astro";
+import Column from "fulldev-ui/components/Column.astro";
 ---
 
 <Layout title="AddEvent">
     <form action="/api/addevent" method="POST">
-        <Section align='center'>
+        <Section align="center">
             <Column>
                 <Section align="center">
                     <Input
-                    label="Start Time"
-                    icon="clock-hour-2"
-                    name="starttime"
-                    type="datetime-local"
-                    required
+                        label="Start Time"
+                        icon="clock-hour-2"
+                        name="starttime"
+                        type="datetime-local"
+                        required
                     />
                     <Input
-                    label="End Time"
-                    icon="clock-hour-4"
-                    name="endtime"
-                    type="datetime-local"
-                    required
+                        label="End Time"
+                        icon="clock-hour-4"
+                        name="endtime"
+                        type="datetime-local"
+                        required
                     />
                     <Input
-                    label="Longitude"
-                    icon="world-longitude"
-                    name="longitude"
-                    type="number"
-                    placeholder="40.7826"
-                    required
+                        label="Longitude"
+                        icon="world-longitude"
+                        name="longitude"
+                        type="number"
+                        placeholder="40.7826"
+                        required
                     />
                     <Input
-                    label="Latitude"
-                    icon="world-latitude"
-                    name="latitude"
-                    type="number"
-                    placeholder="-73.9656"
-                    required
+                        label="Latitude"
+                        icon="world-latitude"
+                        name="latitude"
+                        type="number"
+                        placeholder="-73.9656"
+                        required
                     />
                     <Input
-                    label="Location Name"
-                    icon="map-pin"
-                    name="location"
-                    type="text"
-                    placeholder="Central Park, NYC"
-                    required
+                        label="Location Name"
+                        icon="map-pin"
+                        name="location"
+                        type="text"
+                        placeholder="Central Park, NYC"
+                        required
                     />
                     <Input
-                    label="Event Name"
-                    icon="heading"
-                    name="eventname"
-                    type="text"
-                    placeholder="Recycling Fest @ Central Park"
-                    required
+                        label="Event Name"
+                        icon="heading"
+                        name="eventname"
+                        type="text"
+                        placeholder="Recycling Fest @ Central Park"
+                        required
                     />
                     <Input
-                    label="Event Description"
-                    icon="quote"
-                    name="eventdesc"
-                    type="text"
-                    placeholder=""
-                    required
+                        label="Event Description"
+                        icon="quote"
+                        name="eventdesc"
+                        type="text"
+                        placeholder=""
+                        required
                     />
                     <Button color="brand">Publish</Button>
                 </Section>
             </Column>
         </Section>
     </form>
-   
 </Layout>
