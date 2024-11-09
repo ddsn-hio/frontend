@@ -98,7 +98,7 @@ import Column from "fulldev-ui/components/Column.astro";
             headers: {
                 'Content-Type': 'application/json',
                 // @ts-ignore
-                'Authorization': `Bearer ${getToken()}`,
+                'Authorization': `Bearer ${getToken().split('=')[1]}`,
             },
             body: JSON.stringify(Object.fromEntries(new FormData(eventForm))),
         });
