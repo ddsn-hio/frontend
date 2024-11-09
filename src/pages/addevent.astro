@@ -7,7 +7,7 @@ import Column from "fulldev-ui/components/Column.astro";
 ---
 
 <Layout title="AddEvent">
-    <form action="/api/addevent" method="POST" class="event-form">
+    <form action="/api/event" method="POST" class="event-form">
         <Section align="center">
             <Column>
                 <Section align="center">
@@ -93,7 +93,7 @@ import Column from "fulldev-ui/components/Column.astro";
 
     publishButton.addEventListener('click', async (e) => {
         e.preventDefault();
-        const response = await fetch('/api/addevent', {
+        const response = await fetch('/api/event', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
