@@ -1,0 +1,130 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Content from 'fulldev-ui/blocks/Content.astro'
+import Section from 'fulldev-ui/components/Section.astro';
+import Column from 'fulldev-ui/components/Column.astro';
+
+const organizations = [
+    {
+        label: 'Ohio Youth for Climate Justice',
+        heading: 'Youth-led Climate Action',
+        text: 'Ohio Climate Youth for Climate Justice is a youth-led group organizing actions to address the climate crisis with a focus on environmental justice. This group recognizes the deeper, historical roots of environmental issues and advocates for climate action rooted in justice for oppressed communities.',
+        link: 'https://ohclimatestrike.weebly.com',
+        image: 'https://ohclimatestrike.weebly.com/uploads/1/2/6/5/126504881/f37c0453-3da7-4c98-b09d-596b22935d45_orig.jpg'
+    },
+    {
+        label: 'Sierra Club Miami Group',
+        heading: 'Grassroots Environmental Advocacy',
+        text: 'The Sierra Club Miami Group is a branch of the national Sierra Club and works in the Miami area to promote conservation, political action, and community involvement in environmental causes. They are part of the nation\'s largest grassroots environmental organization, working on numerous initiatives.',
+        link: 'https://miamigroup.org',
+        image: 'https://www.sierraclub.org/sites/default/themes/custom/bootpt/logo.svg'
+    },
+    {
+        label: 'Cincinnati Nature Center',
+        heading: 'Connecting People with Nature',
+        text: 'The Cincinnati Nature Center offers tranquil nature experiences with over 1,700 acres of forests, streams, and ponds. Visitors can enjoy award-winning trails and various educational programs, engaging with nature all year round.',
+        link: 'https://www.cincynature.org',
+        image: 'https://cdn.prod.website-files.com/65ea0fc02c1a7195991711b1/65f0eb99b89cfcd9e5688243_cincinnati%20nature%20center%20logo%20green.svg'
+    },
+    {
+        label: 'Upper Arlington Progressive Action',
+        heading: 'Progressive Political Action',
+        text: 'Upper Arlington Progressive Action is a grassroots political action committee supporting Democratic and progressive candidates and causes in a traditionally conservative community. The organization aims to create a voice and identity for progressive voters.',
+        link: 'https://www.uaprogressiveaction.com',
+        image: 'https://www.uaprogressiveaction.com/sites/default/files/uapa-logo-w-wide-name-2-500w.png'
+    },
+    {
+        label: 'Cleveland Climate Action Fund',
+        heading: 'Community-based Carbon Mitigation',
+        text: 'The Cleveland Climate Action Fund invests in local carbon reduction projects that create positive change in Cleveland neighborhoods. The fund supports projects that promote sustainability, community well-being, and environmental stewardship.',
+        link: 'https://www.clevelandclimateaction.org',
+        image: 'https://clevelandclimateaction.org/wp-content/uploads/2015/02/1080-Opera-in-the-Park.jpg'
+    },
+    {
+        label: 'Groundwork Ohio River Valley',
+        heading: 'Sustainable Community Partnerships',
+        text: 'Groundwork Ohio River Valley partners with communities to promote environmental, economic, and social well-being. Their mission is to manage and regenerate the physical environment through community-based initiatives.',
+        link: 'https://www.groundworkorv.org',
+        image: 'https://groundwork-orv-assets.s3.amazonaws.com/images/GWORV-Home-Hero-00.width-1200.png'
+    },
+    {
+        label: 'Ohio Nature Conservancy',
+        heading: "Conserving Ohio's Lands and Waters",
+        text: 'The Nature Conservancy in Ohio protects over 60,000 acres, including 26 preserves. They work with partners to conserve natural resources across the state.',
+        link: 'https://www.nature.org/en-us/about-us/where-we-work/united-states/ohio/?vu=ohio',
+        image: 'https://www.nature.org/content/dam/tnc/nature/en/logos/tnc-logo-primary-registered-dark-text.svg'
+    },
+    {
+        label: 'Sierra Club Central Ohio Group',
+        heading: 'Environmental Advocacy in Central Ohio',
+        text: 'The Sierra Club Central Ohio Group focuses on environmental challenges across 22 counties, advocating for clean water, green transportation, and sustainable land use policies.',
+        link: 'https://www.sierraclub.org/ohio/central-ohio',
+        image: 'https://www.sierraclub.org/sites/default/themes/custom/bootpt/images/chapters/ohio.png'
+    },
+    {
+        label: 'Sierra Club - Portage Trail Group',
+        heading: 'Environmental Awareness and Action',
+        text: 'The Portage Trail Group supports Cuyahoga Valley National Park and initiates community-based environmental projects focused on climate change and energy efficiency.',
+        link: 'https://ptgsc.wordpress.com',
+        image: 'https://ptgsc.wordpress.com/wp-content/uploads/2020/02/ptg-web-header-1.jpg'
+    },
+    {
+        label: 'Science Alliance for Valuing the Environment (S.A.V.E.) Inc.',
+        heading: 'Promoting Sustainable Living',
+        text: 'S.A.V.E. is a community-focused organization in Greater Toledo dedicated to fostering sustainable lifestyles and respecting the interrelatedness of ecology, spirituality, and sustainability.',
+        link: 'https://www.sciencealliancesave.org',
+        image: 'https://www.sciencealliancesave.org/uploads/1/3/6/3/136356749/published/save-logo.png?1614096463'
+    },
+    {
+        label: 'Foundation for Ohio River Education',
+        heading: 'Stewardship of Ohio\'s Rivers',
+        text: 'The Foundation for Ohio River Education empowers communities to protect watersheds and promotes river stewardship through hands-on programs.',
+        link: 'https://riverlearning.org',
+        image: 'https://riverlearning.org/wp-content/uploads/2016/12/logo-1.png?%3E'
+    },
+    {
+        label: 'Environmental Professionals Network',
+        heading: 'Connecting Environmental Professionals',
+        text: 'EPN connects thousands of environmental professionals across Ohio, fostering a supportive network focused on resource conservation and environmental advocacy.',
+        link: 'https://epn.osu.edu/home',
+        image: 'https://epn.osu.edu/sites/epn/files/imce/DSC_0265.JPG'
+    },
+    {
+        label: 'Environmental Law & Policy Center',
+        heading: 'Advocating for Environmental Justice',
+        text: 'The ELPC is the Midwest\'s leading environmental advocacy group, focused on sustainable development and legal action to protect natural resources and public health.',
+        link: 'https://elpc.org',
+        image: 'https://elpc.org/wp-content/uploads/2020/08/ELPC-Logo-Primary-RGB.png'
+    },
+    {
+        label: 'Bull\'s Run Nature Sanctuary & Arboretum',
+        heading: 'Preserving Ohio\'s Natural Heritage',
+        text: 'Bull\'s Run Sanctuary, a historic Middletown park, provides educational resources and nature trails featuring native plants, wildlife, and seasonal programs.',
+        link: 'https://bullsrun.org',
+        image: 'https://bullsrun.org/wp-content/themes/bullsrun/images/headerlogo.png'
+    },
+    {
+        label: 'Glen Helen Outdoor Education Center',
+        heading: 'Experiential Learning in Nature',
+        text: 'Glen Helen provides experiential, science-based learning programs for students and the public, fostering a connection to nature and environmental stewardship.',
+        link: 'https://www.glenhelen.org',
+        image: 'https://static.wixstatic.com/media/3b8c2e_699e7c46db1f47d0a6d5ec51cd17d052~mv2.png/v1/fill/w_462,h_228,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Glen%20Helen%20updated%20logo%2023%20clear.png'
+    }
+]
+---
+<Layout title="Organizations">
+    <Section align="center">
+        <Column>
+            {organizations.map(({ label, heading, text, link, image }) => (
+                <Content
+                    color="brand"
+                    label={label}
+                    heading={heading}
+                    text={text}
+                    buttons={[{ text: 'Learn More', href: link }]}
+                    image={image}
+                />
+            ))}
+        </Column>
+    </Section>
+</Layout>

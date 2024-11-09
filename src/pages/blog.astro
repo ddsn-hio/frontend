@@ -1,0 +1,115 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Intro from "fulldev-ui/blocks/Intro.astro";
+import Card from "fulldev-ui/components/Card.astro";
+import Column from "fulldev-ui/components/Column.astro";
+import Heading from "fulldev-ui/components/Heading.astro";
+import Section from "fulldev-ui/components/Section.astro";
+import Text from "fulldev-ui/components/Text.astro";
+
+interface Post {
+    frontmatter: {
+        title: string;
+        slug: string;
+    };
+    compiledContent: () => string;
+    Content: () => Function;
+}
+
+// @ts-ignore
+const posts: Post[] = Object.values(
+    import.meta.glob("../blogs/*.md", { eager: true })
+);
+---
+
+<Layout title="Blog">
+    <Intro
+        heading="Blog"
+        align="center"
+        text="View our latest blog posts and stay up to date with the latest news regarding EarthEcho and our mission."
+    />
+
+    <Section align="center">
+        <Column>
+            {
+                posts.map(async (post) => {
+                    const {
+                        frontmatter: { title },
+                        compiledContent,
+                        Content,
+                    } = post;
+
+                    return (
+                        <div class="blog-card">
+                            <details>
+                                <summary>
+                                    <Heading>{title}</Heading>
+                                </summary>
+                                <Content />
+                            </details>
+                        </div>
+                    );
+                })
+            }
+        </Column>
+    </Section>
+</Layout>
+
+<style>
+
+    .blog-card {
+        margin: 1rem;
+        width: 100%;
+    }
+
+    details {
+        width: 80%;
+        margin: 0 auto;
+        margin-bottom: 0.5rem;
+        box-shadow: 0 0.1rem 1rem -0.5rem rgba(0, 0, 0, 0.4);
+        border-radius: 5px;
+        overflow: hidden;
+        color: white;
+    }
+
+    details > a {
+        text-decoration: underline;
+        color: white;
+    }
+
+    summary {
+        padding: 1rem;
+        display: block;
+        border: 3px solid #fff;
+        padding-left: 2.2rem;
+        position: relative;
+        cursor: pointer;
+        user-select: none;
+        color: white;
+    }
+
+    summary:before {
+        content: "";
+        border-width: 0.4rem;
+        border-style: solid;
+        border-color: transparent transparent transparent #fff;
+        position: absolute;
+        top: 1.3rem;
+        left: 1rem;
+        transform: rotate(0);
+        transform-origin: 0.2rem 50%;
+        transition: 0.25s transform ease;
+    }
+
+    details[open] > summary:before {
+        transform: rotate(90deg);
+    }
+
+    details summary::-webkit-details-marker {
+        display: none;
+    }
+
+    summary {
+        cursor: pointer;
+    }
+</style>

@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Input from 'fulldev-ui/components/Input.astro';
+import Button from 'fulldev-ui/components/Button.astro'
+import Section from 'fulldev-ui/components/Section.astro';
+import Column from 'fulldev-ui/components/Column.astro';
+---
+
+<Layout title="Login">
+    
+    <form method="POST" class="login">
+        <Section align='center'>
+            <Column>
+                <Section align="center">
+                    <Input
+                    label="Email"
+                    icon="mail"
+                    name="email"
+                    type="email"
+                    placeholder="johndoe@example.com"
+                    required
+                    />
+                    <Input
+                    label="Password"
+                    icon="password"
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                    required
+                    />
+                    <Button color="brand" class={"login-button"}>Login</Button>
+                </Section>
+            </Column>
+        </Section>
+    </form>
+   
+</Layout>
+
+<script>
+    const loginForm = document.querySelector('.login') as HTMLFormElement;
+    const loginButton = document.querySelector('.login-button') as HTMLButtonElement;
+
+    loginButton.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const response = await fetch('/api/login', {
+            method: 'POST',
+            body: new FormData(loginForm),
+        });
+        // check if resopnse is ok
+        if (response.ok) {
+            // redirect to dashboard
+            window.location.href = '/feed';
+            const data = await response.json();
+            // set cookie token to store user session
+            document.cookie = `token=${data.token}`;
+        } else {
+            // show error message
+            alert('Invalid email or password');
+        }
+    });
+</script>

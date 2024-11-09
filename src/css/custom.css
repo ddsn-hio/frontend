@@ -1,0 +1,27 @@
+body {
+    background: #09090b;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.hero {
+    /* put in center of screen ignoring previous elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+
+/* remove the scrollbar */
+::-webkit-scrollbar {
+    display: none;
+}
+
+.column {
+    /* make it thinner */
+    width: 80%;
+    margin: 0 auto;
+}
+
+input {
+    color: white;
+}

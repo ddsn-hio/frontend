@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Input from 'fulldev-ui/components/Input.astro';
+import Button from 'fulldev-ui/components/Button.astro'
+import Section from 'fulldev-ui/components/Section.astro';
+import Column from 'fulldev-ui/components/Column.astro';
+---
+
+<Layout title="Register">
+    <form action="/api/register" method="POST">
+        <Section align='center'>
+            <Column>
+                <Section align="center">
+                <Input
+                label="Username"
+                icon="user"
+                name="username"
+                type="text"
+                placeholder="John_Doe"
+                required
+                />
+                <Input
+                label="Password"
+                icon="password"
+                name="password"
+                type="password"
+                placeholder="Password"
+                required
+                />
+                <Input
+                label="Email"
+                icon="mail"
+                name="email"
+                type="email"
+                placeholder="johndoe@example.com"
+                required
+                />
+                <Button color="brand">Register</Button>
+              </Section>
+            </Column>
+        </Section>
+    </form>
+</Layout>
