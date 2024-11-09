@@ -5,33 +5,12 @@ import Column from 'fulldev-ui/components/Column.astro';
 import Posts from 'fulldev-ui/blocks/Posts.astro'
 ---
 <Layout title="Feed">
-    <Posts
-    heading="Your feed"
-    text="Environmental events near you"
-    cards={[
-        {
-        tagline: '2024-03-15',
-        heading: 'Lorem ipsum dolor sit amet consectetur',
-        text: 'Introducing our versatile Hero component with multiple layout options including centered, spread, split, and background styles. Perfect for creating impactful page headers.',
-        image: '/images/placeholder-landscape.webp',
-        href: '',
-        },
-        {
-        tagline: '2024-03-10',
-        heading: 'Lorem ipsum dolor sit amet consectetur',
-        text: "Check out our new Features block with customizable layouts. Great for showcasing your product's key features or services.",
-        image: '/images/placeholder-landscape.webp',
-        href: '',
-        },
-        {
-        tagline: '2024-03-05',
-        heading: 'Lorem ipsum dolor sit amet consectetur',
-        text: 'Discover our flexible Content block with split layout and panel options. Ideal for presenting detailed information about your products or services.',
-        image: '/images/placeholder-landscape.webp',
-        href: '',
-        },
-    ]}
-    />
+    <Section align="center">
+        <Column class="posts">
+            
+        </Column>
+    </Section>
+
 </Layout>
 
 <script>
@@ -40,6 +19,22 @@ import Posts from 'fulldev-ui/blocks/Posts.astro'
         window.location.href = '/login';
     }
 
-    
+    const template = `<div class="card root column structure-column align-start frame-none radius-auto space-auto">        <span class="tagline root color-base">{time}</span>  <div class="spread root align-center">  <h4 class="heading root contrast level-4 color-base">{name}</h4>    </div>  <p class="text root color-base">{content}</p>       </div>`;
+
+    const posts = await fetch('/api/events').then(res => res.json());
+
+    const postsContainer = document.querySelector('.posts');
+
+    // @ts-ignore
+    posts.forEach(post => {
+        const postElement = document.createElement('div');
+        postElement.innerHTML = template
+            .replace('{time}', post.start)
+            .replace('{name}', post.title)
+            .replace('{content}', post.content);
+        // @ts-ignore
+        postsContainer.appendChild(postElement);
+    });
+
 
 </script>
