@@ -65,22 +65,25 @@ transition:animate={slide({
 </html>
 
 <script>
-	function isAuthenticated() {
+
+	function getToken() {
 		// read document.cookie and get field 'token'
 		const token = document.cookie.split('; ').find(row => row.startsWith('token='));
+		return token;
+	}
+
+	function isAuthenticated() {
+		// read document.cookie and get field 'token'
+		const token = getToken();
 		// if token is not found, return false
 		return token ? true : false;
 	}
 
 	// @ts-ignore
 	window.isAuthenticated = isAuthenticated;
+	// @ts-ignore
+	window.getToken = getToken;
+	// @ts-ignore
+	window.authenticated = isAuthenticated();
 
-	const authenticated = isAuthenticated();
-	// remove login and register buttons if user is authenticated
-	const registerButton = document.querySelector("a[href='/register']") as HTMLAnchorElement;
-	const loginButton = document.querySelector("a[href='/login']") as HTMLAnchorElement;
-	if (authenticated) {
-		registerButton.remove();
-		loginButton.remove();
-	}
 </script>
