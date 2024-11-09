@@ -33,3 +33,10 @@ import Posts from 'fulldev-ui/blocks/Posts.astro'
     ]}
     />
 </Layout>
+
+<script>
+    // @ts-ignore
+    if (!window.isAuthenticated()) {
+        window.location.href = '/login';
+    }
+</script>

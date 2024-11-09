@@ -37,6 +37,12 @@ import Column from 'fulldev-ui/components/Column.astro';
 </Layout>
 
 <script>
+
+    // @ts-ignore
+    if (window.isAuthenticated()) {
+        window.location.href = '/feed';
+    }
+
     const loginForm = document.querySelector('.login') as HTMLFormElement;
     const loginButton = document.querySelector('.login-button') as HTMLButtonElement;
 

@@ -70,6 +70,11 @@ import Column from 'fulldev-ui/components/Column.astro';
 </script> -->
 
 <script>
+    // @ts-ignore
+    if (window.isAuthenticated()) {
+        window.location.href = '/feed';
+    }
+
     const registerForm = document.querySelector('.register') as HTMLFormElement;
     const registerButton = document.querySelector('.register-button') as HTMLButtonElement;
 
