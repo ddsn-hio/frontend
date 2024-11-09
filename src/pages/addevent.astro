@@ -30,6 +30,7 @@ import Column from "fulldev-ui/components/Column.astro";
                         icon="world-longitude"
                         name="longitude"
                         type="number"
+                        class="long"
                         placeholder="40.7826"
                         required
                     />
@@ -38,6 +39,7 @@ import Column from "fulldev-ui/components/Column.astro";
                         icon="world-latitude"
                         name="latitude"
                         type="number"
+                        class="lat"
                         placeholder="-73.9656"
                         required
                     />
@@ -71,3 +73,19 @@ import Column from "fulldev-ui/components/Column.astro";
         </Section>
     </form>
 </Layout>
+
+<script>
+    // fill in long and lat based on location
+    // request to geocoding api
+    const long = document.querySelector('.long') as HTMLInputElement;
+    const lat = document.querySelector('.lat') as HTMLInputElement;
+    
+    const location = navigator.geolocation;
+    if (location) {
+        location.getCurrentPosition(async (position) => {
+            const { latitude, longitude } = position.coords;
+            long.value = longitude + "";
+            lat.value = latitude + "";
+        });
+    }
+</script>
