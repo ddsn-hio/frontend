@@ -65,4 +65,19 @@ transition:animate={slide({
 </html>
 
 <script>
+	function isAuthenticated() {
+		// read document.cookie and get field 'token'
+		const token = document.cookie.split('; ').find(row => row.startsWith('token='));
+		// if token is not found, return false
+		return token ? true : false;
+	}
+
+	const authenticated = isAuthenticated();
+	// remove login and register buttons if user is authenticated
+	const registerButton = document.querySelector("a[href='/register']") as HTMLAnchorElement;
+	const loginButton = document.querySelector("a[href='/login']") as HTMLAnchorElement;
+	if (authenticated) {
+		registerButton.remove();
+		loginButton.remove();
+	}
 </script>
