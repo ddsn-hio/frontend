@@ -7,28 +7,28 @@ import Column from "fulldev-ui/components/Column.astro";
 ---
 
 <Layout title="AddEvent">
-    <form action="/api/addevent" method="POST">
+    <form action="/api/addevent" method="POST" class="event-form">
         <Section align="center">
             <Column>
                 <Section align="center">
                     <Input
                         label="Start Time"
                         icon="clock-hour-2"
-                        name="starttime"
+                        name="start"
                         type="datetime-local"
                         required
                     />
                     <Input
                         label="End Time"
                         icon="clock-hour-4"
-                        name="endtime"
+                        name="end"
                         type="datetime-local"
                         required
                     />
                     <Input
                         label="Longitude"
                         icon="world-longitude"
-                        name="longitude"
+                        name="long"
                         type="number"
                         class="long"
                         placeholder="40.7826"
@@ -37,24 +37,16 @@ import Column from "fulldev-ui/components/Column.astro";
                     <Input
                         label="Latitude"
                         icon="world-latitude"
-                        name="latitude"
+                        name="lat"
                         type="number"
                         class="lat"
                         placeholder="-73.9656"
                         required
                     />
                     <Input
-                        label="Location Name"
-                        icon="map-pin"
-                        name="location"
-                        type="text"
-                        placeholder="Central Park, NYC"
-                        required
-                    />
-                    <Input
                         label="Event Name"
                         icon="heading"
-                        name="eventname"
+                        name="title"
                         type="text"
                         placeholder="Recycling Fest @ Central Park"
                         required
@@ -62,12 +54,12 @@ import Column from "fulldev-ui/components/Column.astro";
                     <Input
                         label="Event Description"
                         icon="quote"
-                        name="eventdesc"
+                        name="contents"
                         type="text"
                         placeholder=""
                         required
                     />
-                    <Button color="brand">Publish</Button>
+                    <Button color="brand" class="publish">Publish</Button>
                 </Section>
             </Column>
         </Section>
@@ -95,4 +87,27 @@ import Column from "fulldev-ui/components/Column.astro";
             console.log(position.coords);
         });
     }
+
+    const publishButton = document.querySelector('.publish') as HTMLButtonElement;
+    const eventForm = document.querySelector('.event-form') as HTMLFormElement;
+
+    publishButton.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const response = await fetch('/api/addevent', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                // @ts-ignore
+                'Authorization': `Bearer ${getToken()}`,
+            },
+            body: JSON.stringify(Object.fromEntries(new FormData(eventForm))),
+        });
+        if (response.ok) {
+            alert('Event published!');
+            window.location.href = '/feed';
+        } else {
+            alert('Invalid event details');
+        }
+    });
+
 </script>
