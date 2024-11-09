@@ -19,7 +19,7 @@ transition:animate={slide({
 		<meta charset="UTF-8" />
 		<meta name="description" content="Activism and events near you!" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
+		<link rel="icon" type="image/svg+xml" href="/earthecho.png" />
 		<meta name="generator" content={Astro.generator} />
 		<title>EarthEcho - {title}</title>
 		<ViewTransitions fallback="animate" />
@@ -37,6 +37,11 @@ transition:animate={slide({
 				{
 					text: 'Feed',
 					href: '/feed',
+					contrast: true
+				},
+				{
+					text: "Add Event",
+					href: '/addevent',
 					contrast: true
 				},
 				{

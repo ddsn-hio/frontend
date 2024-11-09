@@ -75,6 +75,12 @@ import Column from "fulldev-ui/components/Column.astro";
 </Layout>
 
 <script>
+
+    // @ts-ignore
+    if (!window.isAuthenticated()) {
+        window.location.href = '/login';
+    }
+
     // fill in long and lat based on location
     // request to geocoding api
     const long = document.querySelector('#longitude') as HTMLInputElement;
