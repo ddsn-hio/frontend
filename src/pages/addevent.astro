@@ -77,8 +77,8 @@ import Column from "fulldev-ui/components/Column.astro";
 <script>
     // fill in long and lat based on location
     // request to geocoding api
-    const long = document.querySelector('.long') as HTMLInputElement;
-    const lat = document.querySelector('.lat') as HTMLInputElement;
+    const long = document.querySelector('#longitude') as HTMLInputElement;
+    const lat = document.querySelector('#latitude') as HTMLInputElement;
     
     const location = navigator.geolocation;
     if (location) {
@@ -86,6 +86,7 @@ import Column from "fulldev-ui/components/Column.astro";
             const { latitude, longitude } = position.coords;
             long.value = longitude + "";
             lat.value = latitude + "";
+            console.log(position.coords);
         });
     }
 </script>
