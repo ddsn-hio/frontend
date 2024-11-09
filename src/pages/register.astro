@@ -75,7 +75,7 @@ import Column from 'fulldev-ui/components/Column.astro';
 
     registerButton.addEventListener('click', async (e) => {
         e.preventDefault();
-        const response = await fetch('/api/register', {
+        const response = await fetch('/api/auth/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

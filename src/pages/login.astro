@@ -42,7 +42,7 @@ import Column from 'fulldev-ui/components/Column.astro';
 
     loginButton.addEventListener('click', async (e) => {
         e.preventDefault();
-        const response = await fetch('/api/login', {
+        const response = await fetch('/api/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
